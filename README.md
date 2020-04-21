@@ -5,8 +5,8 @@ WooCommerce XML template for Jeftinije.hr, Ceneje.si, Idealno.rs and Idealno.ba 
 ## Update 21.4.2020.
 
 - Configuration array at the beginning of page-jeftinije.php
-- Support for id or sku in <ID> node
-- Option to ignore product's quantity for <stock> node
+- Support for id or sku in ID node
+- Option to ignore product's quantity for stock node
 
 ## Usage
 
