@@ -6,9 +6,10 @@
         'free-delivery-limit' => 300,   // free delivery over 300
         'global-warranty' => '',        // e.g. '1 godina', if set it applies to all products
         'currency' => 'HRK',            // 'HRK', 'EUR', ...
-        'primary-cat' => 'Telefoni',
+        'primary-cat' => '',            // e.g. Telefoni (optional)
         'delivery-time-min' => '1',     // min days for delivery
         'delivery-time-max' => '2',     // max days for delivery
+        'display-attributes' => false,
         'attributes-to-skip' => array( 'naziv-na-deklaraciji' ),
         'manage-stock' => false,        // if false, all products will be set to “in stock”
         'available-now-text' => 'Raspoloživo odmah',
@@ -91,17 +92,20 @@
 
         $attribs = array();
 
-        foreach( $_product->get_attributes() as $attr_name => $attr ){
-    
-            if ( in_array( wc_attribute_label( $attr_name ), $config['attributes-to-skip'] ) ) {
-                continue;
-            }
+        if( $config['display-attributes'] ) {
 
-            $attribs[$attr_name]['name'] = wc_attribute_label( $attr_name );
+            foreach( $_product->get_attributes() as $attr_name => $attr ){
+        
+                if ( in_array( wc_attribute_label( $attr_name ), $config['attributes-to-skip'] ) ) {
+                    continue;
+                }
     
-            foreach( $attr->get_terms() as $term ){
-    
-                $attribs[$attr_name]['values'][] = $term->name;
+                $attribs[$attr_name]['name'] = wc_attribute_label( $attr_name );
+        
+                foreach( $attr->get_terms() as $term ){
+        
+                    $attribs[$attr_name]['values'][] = $term->name;
+                }
             }
         }
 
@@ -126,7 +130,7 @@
         echo "\t\t<stockText><![CDATA[" . $stockText . "]]></stockText>\n";
         echo "\t\t<stock>" . $stock . "</stock>\n";
         echo "\t\t<quantity>" . $qty . "</quantity>\n";
-        echo "\t\t<fileUnder><![CDATA[" . $config['primary-cat'] . " &gt; " . $levelTwoCat . "]]></fileUnder>\n";
+        echo "\t\t<fileUnder><![CDATA[" . ( $config['primary-cat'] ? $config['primary-cat'] . " &gt; " : "" ) . $levelTwoCat . "]]></fileUnder>\n";
         echo "\t\t<brand><![CDATA[" . $brand . "]]></brand>\n";
         echo "\t\t<EAN></EAN>\n";
         echo "\t\t<productCode><![CDATA[" . $product->get_sku() . "]]></productCode>\n";
