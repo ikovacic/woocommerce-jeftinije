@@ -44,7 +44,7 @@
 
         $id = get_the_id();
 
-        $_product = wc_get_product( $id );
+        // $_product = wc_get_product( $id );
 
         if( $product->get_sku() && $config['id'] == 'sku' ) {
             $id = $product->get_sku();
@@ -53,20 +53,23 @@
         // PREPARE OTHER IMAGES
         $product_gallery = array();
     
-        $attachment_ids = $_product->get_gallery_image_ids();
+        $attachment_ids = $product->get_gallery_image_ids();
     
         foreach( $attachment_ids as $attachment_id ) {
             $product_gallery[] = wp_get_attachment_url( $attachment_id );
         }
 
         // PREPARE QUANTITY AND STOCK INFORMATION
-        $qty = $_product->get_stock_quantity();
+        $qty = $product->get_stock_quantity();
         if( $config['manage-stock'] ) {
             $stockText = $qty > 0 ? $config['available-now-text'] : $config['coming-soon-text'];
             $stock = $qty > 0 ? 'in stock' : 'out of stock';
-        } else {
+        } elseif ( $product->is_in_stock() ) {
             $stockText = $config['available-now-text'];
             $stock = 'in stock';
+        } else {
+            $stockText = $config['coming-soon-text'];
+            $stock = 'out of stock';
         }
 
         // PREPARE CATEGORIES
@@ -84,7 +87,7 @@
         $delivery = $config['delivery-price'];
 
         // FREE DELIVERY IF AMOUNT LARGER THAN XX
-        if($_product->get_price() > $config['free-delivery-limit']) {
+        if($product->get_price() >= $config['free-delivery-limit']) {
             $delivery = 0;
         }
 
@@ -94,7 +97,7 @@
 
         if( $config['display-attributes'] ) {
 
-            foreach( $_product->get_attributes() as $attr_name => $attr ){
+            foreach( $product->get_attributes() as $attr_name => $attr ){
         
                 if ( in_array( wc_attribute_label( $attr_name ), $config['attributes-to-skip'] ) ) {
                     continue;
@@ -124,8 +127,8 @@
         echo "\t\t<link><![CDATA[" . get_the_permalink() . "]]></link>\n";
         echo "\t\t<mainImage><![CDATA[" . get_the_post_thumbnail_url($post, 'full') . "]]></mainImage>\n";
         echo "\t\t<moreImages><![CDATA[" . implode(',', $product_gallery) . "]]></moreImages>\n";
-        echo "\t\t<price>" . number_format($_product->get_price(), 2) . "</price>\n";
-        echo "\t\t<regularPrice>" . number_format($_product->get_regular_price(), 2) . "</regularPrice>\n";
+        echo "\t\t<price>" . number_format($product->get_price(), 2) . "</price>\n";
+        echo "\t\t<regularPrice>" . number_format(($product->get_regular_price() ? $product->get_regular_price() : $product->get_price()), 2) . "</regularPrice>\n";
         echo "\t\t<curCode>" . $config['currency'] . "</curCode>\n";
         echo "\t\t<stockText><![CDATA[" . $stockText . "]]></stockText>\n";
         echo "\t\t<stock>" . $stock . "</stock>\n";
