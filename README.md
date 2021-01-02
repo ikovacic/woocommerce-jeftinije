@@ -21,7 +21,7 @@ That's it, your XML feed will be available at yourdomain.com/jeftinije
 - Small fixes for attrbiute values
 - Small fixes for stockText attribute
 
-** Next steps **
+**Next steps**
 
 - Rewrite and optimization
 - Admin interface
