@@ -8,7 +8,7 @@ WooCommerce XML template for Jeftinije.hr, Ceneje.si, Idealno.rs and Idealno.ba 
 1. Download template page-jeftinije.php
 2. Upload template to your theme folder (wp-content/themes/your-theme/)
 3. Create page with URL slug jeftinije
-4. Adjust config (delivery price, currency, attributest to skip, etc.)
+4. Adjust config (delivery price, currency, attributes to skip, etc.)
 
 That's it, your XML feed will be available at yourdomain.com/jeftinije
 
