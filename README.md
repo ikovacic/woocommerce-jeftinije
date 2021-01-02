@@ -13,6 +13,20 @@ WooCommerce XML template for Jeftinije.hr, Ceneje.si, Idealno.rs and Idealno.ba 
 That's it, your XML feed will be available at yourdomain.com/jeftinije
 
 
+## Support
+
+Feel free to contact me at hello@applause.hr for:
+
+- **Free** basic support (within 3 days)
+- **Paid** customizations (depending on specific task)
+
+
+## Next steps
+
+- Rewrite and optimization
+- Admin interface
+
+
 ## Update 2.1.2021.
 
 - Added support for variable products
@@ -20,11 +34,6 @@ That's it, your XML feed will be available at yourdomain.com/jeftinije
 - Added support for Brand (it's possible to use Brand as attribute or custom taxonomy)
 - Small fixes for attrbiute values
 - Small fixes for stockText attribute
-
-**Next steps**
-
-- Rewrite and optimization
-- Admin interface
 
 
 ## Update 21.4.2020.
