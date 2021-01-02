@@ -32,7 +32,7 @@ Feel free to contact me at hello@applause.hr for:
 - Added support for variable products
 - Added support for EAN (it's possible to use EAN as attribute or custom meta field)
 - Added support for Brand (it's possible to use Brand as attribute or custom taxonomy)
-- Small fixes for attrbiute values
+- Small fixes for attribute values
 - Small fixes for stockText attribute
 
 
