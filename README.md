@@ -24,6 +24,7 @@ Feel free to contact me at hello@applause.hr for:
 ## Next steps
 
 - Rewrite and optimization
+- Exclude specific product from feed
 - Admin interface
 
 
