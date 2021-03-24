@@ -24,8 +24,13 @@ Feel free to contact me at hello@applause.hr for:
 ## Next steps
 
 - Rewrite and optimization
-- Exclude specific product from feed
 - Admin interface
+
+
+## Update 24.3.2021.
+
+- Added support to exclude products by comma separated list of IDs
+- Added support to chunk huge XML files, optional (page 1: /jeftinije/?limit=500&offset=0, page 2: /jeftinije/?limit=500&offset=500, ...)
 
 
 ## Update 2.1.2021.

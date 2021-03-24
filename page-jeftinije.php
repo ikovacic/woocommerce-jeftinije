@@ -16,6 +16,7 @@
         'coming-soon-text'      => 'Dolazi uskoro',
         'brand-attribute'       => 'brand',     // leave empty to use Brand from custom taxonomy (https://github.com/ikovacic/woocommerce-brand)
         'ean-attribute'         => 'ean',       // leave empty to use EAN from custom meta field (https://github.com/ikovacic/woocommerce-ean)
+        'exclude-products'      => array(  ),    // enter comma separated product ids that you want to exclude, e.g. 15, 20, 22, 59, 1494
     );
 
     /*
@@ -60,6 +61,19 @@
         'posts_per_page' => -1,
         'post_type' => 'product'
     );
+
+    if( count( $config['exclude-products'] ) ) {
+        $args['post__not_in'] = $config['exclude-products'];
+    }
+
+    // PRODUCT LIMIT (1 product can have multiple variations)
+    if( isset( $_GET['limit'] ) && $_GET['limit'] ) {
+        $args['posts_per_page'] = $_GET['limit'];
+    }
+
+    if( isset( $_GET['offset'] ) && $_GET['offset'] ) {
+        $args['offset'] = $_GET['offset'];
+    }
 
     $products = new WP_Query( $args );
 
